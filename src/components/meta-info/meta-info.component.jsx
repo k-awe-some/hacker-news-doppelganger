@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const MetaInfo = ({ title, url, by, time, descendants }) => (
   <div>
@@ -10,5 +11,13 @@ const MetaInfo = ({ title, url, by, time, descendants }) => (
     </p>
   </div>
 );
+
+MetaInfo.propTypes = {
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string,
+  by: PropTypes.string.isRequired,
+  time: PropTypes.number.isRequired,
+  descendants: PropTypes.number
+};
 
 export default MetaInfo;

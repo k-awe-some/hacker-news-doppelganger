@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { fetchMainPosts } from "../../utils/api";
 import PostsList from "../posts-list/posts-list.component";
@@ -47,5 +48,9 @@ class NewsFeed extends React.Component {
     return <PostsList posts={posts} />;
   }
 }
+
+NewsFeed.propTypes = {
+  type: PropTypes.string.isRequired
+};
 
 export default NewsFeed;

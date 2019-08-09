@@ -1,6 +1,7 @@
 import React from "react";
 
 import { fetchMainPosts } from "../../utils/api";
+import PostsList from "../posts-list/posts-list.component";
 
 class NewsFeed extends React.Component {
   state = {
@@ -37,19 +38,13 @@ class NewsFeed extends React.Component {
   }
 
   render() {
-    const { posts } = this.state;
-    return (
-      <ul>
-        {posts.map(post => (
-          <li key={post.id}>
-            <h4>{post.title}</h4>
-            <p>
-              by {post.by} on {post.time} with {post.descendants} comments
-            </p>
-          </li>
-        ))}
-      </ul>
-    );
+    const { posts, error } = this.state;
+    console.log(posts);
+    if (error) {
+      return <h3>{error}</h3>;
+    }
+
+    return <PostsList posts={posts} />;
   }
 }
 

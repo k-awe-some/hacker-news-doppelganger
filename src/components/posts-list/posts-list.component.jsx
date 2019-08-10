@@ -9,6 +9,7 @@ const PostsList = ({ posts }) => (
     {posts.map(post => (
       <li key={post.id}>
         <MetaInfo
+          id={post.id}
           title={post.title}
           url={post.url}
           by={post.by}

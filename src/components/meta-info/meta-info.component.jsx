@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const MetaInfo = ({ title, url, by, time, descendants }) => (
+const MetaInfo = ({ id, title, url, by, time, descendants }) => (
   <div>
     <h4>
       <a href={url}>{title}</a>
@@ -17,7 +17,16 @@ const MetaInfo = ({ title, url, by, time, descendants }) => (
       >
         {by}
       </Link>{" "}
-      on {time} with {descendants} comments
+      on {time} with{" "}
+      <Link
+        to={{
+          pathname: "/post",
+          search: `?id=${id}`
+        }}
+      >
+        {descendants}
+      </Link>{" "}
+      comments
     </p>
   </div>
 );

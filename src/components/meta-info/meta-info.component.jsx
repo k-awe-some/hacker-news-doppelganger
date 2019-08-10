@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-import User from "../user/user.component";
-
 const MetaInfo = ({ title, url, by, time, descendants }) => (
   <div>
     <h4>
@@ -28,7 +26,7 @@ MetaInfo.propTypes = {
   title: PropTypes.string.isRequired,
   url: PropTypes.string,
   by: PropTypes.string.isRequired,
-  time: PropTypes.number.isRequired,
+  time: PropTypes.string.isRequired,
   descendants: PropTypes.number
 };
 

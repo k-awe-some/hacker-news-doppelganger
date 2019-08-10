@@ -14,12 +14,19 @@ export const fetchItem = async id => {
 };
 
 const onlyStories = items => items.filter(({ type }) => type === "story");
-
 export const fetchPosts = ids => {
   const posts = Promise.all(ids.map(id => fetchItem(id))).then(items =>
     onlyStories(items)
   );
   return posts;
+};
+
+const onlyComments = items => items.filter(({ type }) => (type = "comment"));
+export const fetchComments = ids => {
+  const comments = Promise.all(ids.map(id => fetchItem(id))).then(items =>
+    onlyComments(items)
+  );
+  return comments;
 };
 
 export const fetchMainPosts = async type => {

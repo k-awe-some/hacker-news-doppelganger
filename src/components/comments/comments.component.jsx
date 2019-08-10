@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import { formatDate } from "../../utils/helpers";
 
@@ -25,5 +26,9 @@ const Comments = ({ comments }) => (
     ))}
   </ul>
 );
+
+Comments.propTypes = {
+  comments: PropTypes.array.isRequired
+};
 
 export default Comments;

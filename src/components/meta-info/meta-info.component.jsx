@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import User from "../user/user.component";
 
@@ -9,8 +10,16 @@ const MetaInfo = ({ title, url, by, time, descendants }) => (
       <a href={url}>{title}</a>
     </h4>
     <p>
-      by <button onClick={() => <User username={by} />}>{by}</button> on {time}{" "}
-      with {descendants} comments
+      by{" "}
+      <Link
+        to={{
+          pathname: "/user",
+          search: `?id=${by}`
+        }}
+      >
+        {by}
+      </Link>{" "}
+      on {time} with {descendants} comments
     </p>
   </div>
 );

@@ -18,7 +18,6 @@ export const fetchMainPosts = async type => {
     const res = await fetch(`${api}${type}${json}`);
     const data = await res.json();
     const ids = await data.slice(0, 50);
-
     const posts = Promise.all(ids.map(id => fetchItem(id)));
     return posts;
   } catch (error) {

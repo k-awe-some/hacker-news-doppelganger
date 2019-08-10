@@ -1,13 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import User from "../user/user.component";
+
 const MetaInfo = ({ title, url, by, time, descendants }) => (
   <div>
     <h4>
       <a href={url}>{title}</a>
     </h4>
     <p>
-      by {by} on {time} with {descendants} comments
+      by <button onClick={() => <User username={by} />}>{by}</button> on {time}{" "}
+      with {descendants} comments
     </p>
   </div>
 );

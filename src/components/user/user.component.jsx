@@ -1,29 +1,43 @@
 import React from "react";
+import queryString from "query-string";
 
 import { formatDate } from "../../utils/helpers";
-import { fetchUser } from "../../utils/api";
-import queryString from "query-string";
+import { fetchUser, fetchPosts } from "../../utils/api";
+import PostsList from "../posts-list/posts-list.component";
 
 class User extends React.Component {
   state = {
     user: null,
     loadingUser: true,
+    posts: null,
+    loadingPosts: true,
     error: null
   };
 
   componentDidMount() {
     const { id } = queryString.parse(this.props.location.search);
-    fetchUser(id).then(user => {
-      this.setState({
-        user,
-        loadingUser: false
+    fetchUser(id)
+      .then(user => {
+        this.setState({
+          user,
+          loadingUser: false
+        });
+        return fetchPosts(user.submitted.slice(0, 30));
+      })
+      .then(posts => {
+        this.setState({
+          posts,
+          loadingPosts: false
+        });
+        return this.state;
       });
-      return this.state;
-    });
   }
 
   render() {
-    const { user, loadingUser, error } = this.state;
+    const { user, loadingUser, posts, loadingPosts, error } = this.state;
+    if (loadingPosts === false) {
+      console.log(posts);
+    }
 
     return (
       <React.Fragment>
@@ -38,7 +52,7 @@ class User extends React.Component {
               joined {formatDate(user.created)} has {user.karma} karma
             </p>
             <h4>Posts</h4>
-            <p>{user.submitted}</p>
+            {loadingPosts === false && <PostsList posts={posts} />}
           </React.Fragment>
         )}
       </React.Fragment>

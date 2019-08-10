@@ -13,6 +13,15 @@ export const fetchItem = async id => {
   return item;
 };
 
+const onlyStories = items => items.filter(({ type }) => type === "story");
+
+export const fetchPosts = ids => {
+  const posts = Promise.all(ids.map(id => fetchItem(id))).then(items =>
+    onlyStories(items)
+  );
+  return posts;
+};
+
 export const fetchMainPosts = async type => {
   try {
     const res = await fetch(`${api}${type}${json}`);

@@ -1,5 +1,6 @@
 import React from "react";
 
+import { formatDate } from "../../utils/helpers";
 import { fetchUser } from "../../utils/api";
 import queryString from "query-string";
 
@@ -34,7 +35,7 @@ class User extends React.Component {
           <React.Fragment>
             <h2>{user.id}</h2>
             <p>
-              joined {user.created} has {user.karma} karma
+              joined {formatDate(user.created)} has {user.karma} karma
             </p>
             <h4>Posts</h4>
             <p>{user.submitted}</p>

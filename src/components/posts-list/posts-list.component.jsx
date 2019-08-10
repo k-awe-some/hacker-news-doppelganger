@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { formatDate } from "../../utils/helpers";
 import MetaInfo from "../meta-info/meta-info.component";
 
 const PostsList = ({ posts }) => (
@@ -11,7 +12,7 @@ const PostsList = ({ posts }) => (
           title={post.title}
           url={post.url}
           by={post.by}
-          time={post.time}
+          time={formatDate(post.time)}
           descendants={post.descendants}
         />
       </li>

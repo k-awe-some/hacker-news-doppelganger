@@ -8,22 +8,35 @@ import MetaInfo from "../meta-info/meta-info.component";
 class Post extends React.Component {
   state = {
     post: null,
-    loadingPost: true
+    loadingPost: true,
+    error: null
   };
 
   componentDidMount() {
     const { id } = queryString.parse(this.props.location.search);
-    fetchItem(id).then(post => {
-      this.setState({
-        post,
-        loadingPost: false
-      });
-      return this.state;
-    });
+    fetchItem(id)
+      .then(post => {
+        this.setState({
+          post,
+          loadingPost: false
+        });
+        return this.state;
+      })
+      .catch(({ message }) =>
+        this.setState({
+          error: message,
+          loadingPost: false
+        })
+      );
   }
 
   render() {
-    const { post, loadingPost } = this.state;
+    const { post, loadingPost, error } = this.state;
+
+    if (error) {
+      return <h4>{error}</h4>;
+    }
+
     return (
       <React.Fragment>
         {loadingPost === true ? (

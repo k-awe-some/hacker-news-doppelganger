@@ -30,13 +30,20 @@ class User extends React.Component {
           loadingPosts: false
         });
         return this.state;
-      });
+      })
+      .catch(({ message }) =>
+        this.setState({
+          error: message,
+          loadingUser: false,
+          loadingPost: false
+        })
+      );
   }
 
   render() {
     const { user, loadingUser, posts, loadingPosts, error } = this.state;
-    if (loadingPosts === false) {
-      console.log(posts);
+    if (error) {
+      return <h4>{error}</h4>;
     }
 
     return (

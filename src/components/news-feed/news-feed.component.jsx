@@ -40,7 +40,7 @@ class NewsFeed extends React.Component {
 
   render() {
     const { posts, error } = this.state;
-    console.log(posts);
+
     if (error) {
       return <h3>{error}</h3>;
     }

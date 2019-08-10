@@ -1,17 +1,27 @@
 const api = "https://hacker-news.firebaseio.com/v0/";
 const json = ".json?print=pretty";
 
-export const fetchItem = id =>
-  fetch(`${api}item/${id}${json}`)
-    .then(res => res.json())
-    .then(item => item);
+export const fetchUser = async id => {
+  const res = await fetch(`${api}user/${id}${json}`);
+  const user = await res.json();
+  return user;
+};
 
-export const fetchMainPosts = type =>
-  fetch(`${api}${type}${json}`)
-    .then(res => res.json())
-    .then(ids => ids.slice(0, 50))
-    .then(ids => Promise.all(ids.map(id => fetchItem(id))))
-    .then(posts => posts)
-    .catch(error => {
-      console.log(error);
-    });
+export const fetchItem = async id => {
+  const res = await fetch(`${api}item/${id}${json}`);
+  const item = await res.json();
+  return item;
+};
+
+export const fetchMainPosts = async type => {
+  try {
+    const res = await fetch(`${api}${type}${json}`);
+    const data = await res.json();
+    const ids = await data.slice(0, 50);
+
+    const posts = Promise.all(ids.map(id => fetchItem(id)));
+    return posts;
+  } catch (error) {
+    return error.message;
+  }
+};

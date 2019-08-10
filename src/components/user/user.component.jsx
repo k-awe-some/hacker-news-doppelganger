@@ -4,6 +4,7 @@ import queryString from "query-string";
 import { formatDate } from "../../utils/helpers";
 import { fetchUser, fetchPosts } from "../../utils/api";
 import PostsList from "../posts-list/posts-list.component";
+import Loading from "../loading/loading.component";
 
 class User extends React.Component {
   state = {
@@ -50,7 +51,7 @@ class User extends React.Component {
       <React.Fragment>
         {loadingUser === true ? (
           <React.Fragment>
-            <h2>LOADING</h2>
+            <Loading text={`Fetching user actitivies'`} />
           </React.Fragment>
         ) : (
           <React.Fragment>

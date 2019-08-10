@@ -5,6 +5,7 @@ import { formatDate } from "../../utils/helpers";
 import { fetchItem, fetchComments } from "../../utils/api";
 import MetaInfo from "../meta-info/meta-info.component";
 import Comments from "../comments/comments.component";
+import Loading from "../loading/loading.component";
 
 class Post extends React.Component {
   state = {
@@ -51,17 +52,19 @@ class Post extends React.Component {
     return (
       <React.Fragment>
         {loadingPost === true && loadingComments === true ? (
-          <h2>LOADING</h2>
+          <Loading text="Fetching comments" />
         ) : (
           <React.Fragment>
-            <MetaInfo
-              id={post.id}
-              title={post.title}
-              url={post.url}
-              by={post.by}
-              time={formatDate(post.time)}
-              descendants={post.descendants}
-            />
+            {loadingPost === false && (
+              <MetaInfo
+                id={post.id}
+                title={post.title}
+                url={post.url}
+                by={post.by}
+                time={formatDate(post.time)}
+                descendants={post.descendants}
+              />
+            )}
             {loadingComments === false && <Comments comments={comments} />}
           </React.Fragment>
         )}

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { fetchMainPosts } from "../../utils/api";
 import PostsList from "../posts-list/posts-list.component";
+import Loading from "../loading/loading.component";
 
 class NewsFeed extends React.Component {
   state = {
@@ -39,13 +40,21 @@ class NewsFeed extends React.Component {
   }
 
   render() {
-    const { posts, error } = this.state;
+    const { posts, error, loading } = this.state;
 
     if (error) {
       return <h3>{error}</h3>;
     }
 
-    return <PostsList posts={posts} />;
+    return (
+      <React.Fragment>
+        {loading === true ? (
+          <Loading text="Fetching top stories" />
+        ) : (
+          <PostsList posts={posts} />
+        )}
+      </React.Fragment>
+    );
   }
 }
 

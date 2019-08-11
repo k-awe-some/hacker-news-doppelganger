@@ -1,6 +1,11 @@
 const api = "https://hacker-news.firebaseio.com/v0/";
 const json = ".json?print=pretty";
 
+const removeDead = items =>
+  items.filter(Boolean).filter(({ dead }) => dead !== true);
+
+const removeDeleted = items => items.filter(({ deleted }) => deleted !== true);
+
 export const fetchUser = async id => {
   const res = await fetch(`${api}user/${id}${json}`);
   const user = await res.json();
@@ -16,7 +21,7 @@ export const fetchItem = async id => {
 const onlyStories = items => items.filter(({ type }) => type === "story");
 export const fetchPosts = ids => {
   const posts = Promise.all(ids.map(id => fetchItem(id))).then(items =>
-    onlyStories(items)
+    removeDeleted(onlyStories(removeDead(items)))
   );
   return posts;
 };
@@ -24,7 +29,7 @@ export const fetchPosts = ids => {
 const onlyComments = items => items.filter(({ type }) => (type = "comment"));
 export const fetchComments = ids => {
   const comments = Promise.all(ids.map(id => fetchItem(id))).then(items =>
-    onlyComments(items)
+    removeDeleted(onlyComments(removeDead(items)))
   );
   return comments;
 };

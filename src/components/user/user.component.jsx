@@ -1,6 +1,7 @@
 import React from "react";
 import queryString from "query-string";
 
+import "./user.styles.scss";
 import { formatDate } from "../../utils/helpers";
 import { fetchUser, fetchPosts } from "../../utils/api";
 import PostsList from "../posts-list/posts-list.component";
@@ -55,12 +56,17 @@ class User extends React.Component {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <h2>{user.id}</h2>
-            <p>
-              joined {formatDate(user.created)} has {user.karma} karma
-            </p>
-            <h4>Posts</h4>
-            {loadingPosts === false && <PostsList posts={posts} />}
+            <div className="user">
+              <h2 className="user-id">{user.id}</h2>
+              <p className="user-description">
+                joined {formatDate(user.created)} has {user.karma} karma
+              </p>
+            </div>
+
+            <div className="post">
+              <h3 className="post-heading">Posts by {user.id}</h3>
+              {loadingPosts === false && <PostsList posts={posts} />}
+            </div>
           </React.Fragment>
         )}
       </React.Fragment>

@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
+import "./comments.styles.scss";
 import { formatDate } from "../../utils/helpers";
 
 const Comments = ({ comments }) => (
   <ul>
     {comments.map(comment => (
-      <li key={comment.id}>
-        <p>
+      <li key={comment.id} className="comment">
+        <p className="comment-description">
           by{" "}
           <Link
             to={{
@@ -21,7 +22,7 @@ const Comments = ({ comments }) => (
           on {formatDate(comment.time)}
         </p>
 
-        <p>{comment.text}</p>
+        <p className="comment-text">{comment.text}</p>
       </li>
     ))}
   </ul>

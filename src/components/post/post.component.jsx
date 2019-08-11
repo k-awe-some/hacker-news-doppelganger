@@ -51,22 +51,22 @@ class Post extends React.Component {
 
     return (
       <React.Fragment>
-        {loadingPost === true && loadingComments === true ? (
+        {loadingPost === true ? (
+          <Loading text="Fetching post" />
+        ) : (
+          <MetaInfo
+            id={post.id}
+            title={post.title}
+            url={post.url}
+            by={post.by}
+            time={formatDate(post.time)}
+            descendants={post.descendants}
+          />
+        )}
+        {loadingComments === true ? (
           <Loading text="Fetching comments" />
         ) : (
-          <React.Fragment>
-            {loadingPost === false && (
-              <MetaInfo
-                id={post.id}
-                title={post.title}
-                url={post.url}
-                by={post.by}
-                time={formatDate(post.time)}
-                descendants={post.descendants}
-              />
-            )}
-            {loadingComments === false && <Comments comments={comments} />}
-          </React.Fragment>
+          <Comments comments={comments} />
         )}
       </React.Fragment>
     );

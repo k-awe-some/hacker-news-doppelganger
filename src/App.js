@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import "./App.css";
+import "./App.scss";
 import NavBar from "./components/nav-bar/nav-bar.component";
 import NewsFeed from "./components/news-feed/news-feed.component";
 import User from "./components/user/user.component";

@@ -7,7 +7,7 @@ import Loading from "../loading/loading.component";
 
 class NewsFeed extends React.Component {
   state = {
-    posts: [],
+    posts: null,
     error: null,
     loading: true
   };
@@ -16,9 +16,15 @@ class NewsFeed extends React.Component {
     this.handleFetch();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.type !== this.props.type) {
+      this.handleFetch();
+    }
+  }
+
   handleFetch() {
     this.setState({
-      posts: [],
+      posts: null,
       error: null,
       loading: true
     });
@@ -49,7 +55,7 @@ class NewsFeed extends React.Component {
     return (
       <React.Fragment>
         {loading === true ? (
-          <Loading text="Fetching top stories" />
+          <Loading text="Fetching stories" />
         ) : (
           <PostsList posts={posts} />
         )}

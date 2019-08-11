@@ -2,12 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+import "./meta-info.styles.scss";
+
 const MetaInfo = ({ id, title, url, by, time, descendants }) => (
-  <div>
-    <h4>
+  <div className="meta-info">
+    <h4 className="meta-info-title">
       <a href={url}>{title}</a>
     </h4>
-    <p>
+    <p className="meta-info-description">
       by{" "}
       <Link
         to={{
@@ -26,7 +28,7 @@ const MetaInfo = ({ id, title, url, by, time, descendants }) => (
       >
         {descendants}
       </Link>{" "}
-      comments
+      {descendants === 1 ? <span>comment</span> : <span>comments</span>}
     </p>
   </div>
 );

@@ -9,7 +9,7 @@ const activeStyle = {
 
 const NavBar = () => (
   <nav className="nav-bar">
-    <ul className="nav-posts">
+    <ul className="nav-bar-posts">
       <li>
         <NavLink exact to="/" activeStyle={activeStyle}>
           Top

@@ -1,26 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import "./comments.styles.scss";
+import MetaInfo from "../meta-info/meta-info.component";
 import { formatDate } from "../../utils/helpers";
 
 const Comments = ({ comments }) => (
   <ul>
     {comments.map(comment => (
       <li key={comment.id} className="comment">
-        <p className="comment-description">
-          by{" "}
-          <Link
-            to={{
-              pathname: "/user",
-              search: `?id=${comment.by}`
-            }}
-          >
-            {comment.by}
-          </Link>{" "}
-          on {formatDate(comment.time)}
-        </p>
+        <MetaInfo
+          id={comment.id}
+          by={comment.by}
+          time={formatDate(comment.time)}
+        />
 
         <p
           className="comment-text"

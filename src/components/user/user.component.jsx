@@ -52,7 +52,7 @@ class User extends React.Component {
       <React.Fragment>
         {loadingUser === true ? (
           <React.Fragment>
-            <Loading text={`Fetching user actitivies'`} />
+            <Loading text={`Fetching user actitivies`} />
           </React.Fragment>
         ) : (
           <React.Fragment>
@@ -64,7 +64,7 @@ class User extends React.Component {
             </div>
 
             <div className="post">
-              <h3 className="post-heading">Posts by {user.id}</h3>
+              <h3 className="post-heading">Posts</h3>
               {loadingPosts === false && <PostsList posts={posts} />}
             </div>
           </React.Fragment>

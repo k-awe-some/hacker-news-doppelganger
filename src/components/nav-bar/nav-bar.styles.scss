@@ -1,15 +1,24 @@
 .nav-bar {
   margin-bottom: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 
   &-posts {
     margin: 0;
     display: flex;
     flex-direction: row;
+
+    li {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-right: 10px;
+    }
   }
 
-  li {
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-right: 10px;
+  &-theme-toggle {
+    background: transparent;
+    border-style: none;
+    cursor: pointer;
   }
 }

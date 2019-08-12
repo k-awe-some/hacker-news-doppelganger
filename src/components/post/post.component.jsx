@@ -56,7 +56,15 @@ class Post extends React.Component {
           <Loading text="Fetching post" />
         ) : (
           <React.Fragment>
-            <PostTitle url={post.url} title={post.title} id={post.id} />
+            <div className="tilte">
+              <PostTitle
+                url={post.url}
+                title={post.title}
+                id={post.id}
+                fontSize="large"
+              />
+            </div>
+
             <MetaInfo
               id={post.id}
               by={post.by}

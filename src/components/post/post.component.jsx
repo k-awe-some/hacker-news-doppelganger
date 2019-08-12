@@ -3,6 +3,7 @@ import queryString from "query-string";
 
 import { formatDate } from "../../utils/helpers";
 import { fetchItem, fetchComments } from "../../utils/api";
+import PostTitle from "../post-title/post-title.component";
 import MetaInfo from "../meta-info/meta-info.component";
 import Comments from "../comments/comments.component";
 import Loading from "../loading/loading.component";
@@ -24,7 +25,7 @@ class Post extends React.Component {
           post,
           loadingPost: false
         });
-        return fetchComments(this.state.post.kids);
+        return fetchComments(this.state.post.kids || []);
       })
       .then(comments => {
         this.setState({
@@ -54,17 +55,18 @@ class Post extends React.Component {
         {loadingPost === true ? (
           <Loading text="Fetching post" />
         ) : (
-          <MetaInfo
-            id={post.id}
-            title={post.title}
-            url={post.url}
-            by={post.by}
-            time={formatDate(post.time)}
-            descendants={post.descendants}
-          />
+          <React.Fragment>
+            <PostTitle url={post.url} title={post.title} id={post.id} />
+            <MetaInfo
+              id={post.id}
+              by={post.by}
+              time={formatDate(post.time)}
+              descendants={post.descendants}
+            />
+          </React.Fragment>
         )}
         {loadingComments === true ? (
-          <Loading text="Fetching comments" />
+          loadingPost === false && <Loading text="Fetching comments" />
         ) : (
           <Comments comments={comments} />
         )}

@@ -22,7 +22,10 @@ const Comments = ({ comments }) => (
           on {formatDate(comment.time)}
         </p>
 
-        <p className="comment-text">{comment.text}</p>
+        <p
+          className="comment-text"
+          dangerouslySetInnerHTML={{ __html: comment.text }}
+        />
       </li>
     ))}
   </ul>

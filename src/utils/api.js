@@ -42,7 +42,9 @@ export const fetchMainPosts = async type => {
     if (!ids) {
       throw new Error(`There was an error fetching the ${type} posts`);
     }
-    const posts = Promise.all(ids.map(id => fetchItem(id)));
+    const posts = Promise.all(ids.map(id => fetchItem(id))).then(items =>
+      removeDeleted(onlyComments(removeDead(items)))
+    );
     return posts;
   } catch (error) {
     return error.message;

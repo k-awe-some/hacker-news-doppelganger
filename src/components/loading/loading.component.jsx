@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import "./loading.styles.scss";
+
 class Loading extends React.Component {
   state = {
     content: this.props.text
@@ -22,7 +24,7 @@ class Loading extends React.Component {
   }
 
   render() {
-    return <p>{this.state.content}</p>;
+    return <p className="loading">{this.state.content}</p>;
   }
 }
 

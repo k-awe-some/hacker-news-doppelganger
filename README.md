@@ -16,9 +16,15 @@ This app is created with:
 
 ## Visuals
 
+|             Day mode             |           Night mode            |
+| :------------------------------: | :-----------------------------: |
+| ![](visuals/news-feed-light.png) | ![](visuals/news-feed-dark.png) |
+| ![](visuals/comments-light.png)  | ![](visuals/comments-dark.png)  |
+|   ![](visuals/user-light.png)    |   ![](visuals/user-dark.png)    |
+
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome and appreciated. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 
